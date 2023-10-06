@@ -1,0 +1,40 @@
+{
+    "name": "michaelcrowcroft/laravel-cloud-ip",
+    "version": "1.0.0",
+    "description": "Check if IP addresses are associated with cloud vendors and services.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Crowcroft",
+            "email": "michaelcrowcroft@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MichaelCrowcroft\\CloudIP\\": "src",
+            "MichaelCrowcroft\\CloudIP\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MichaelCrowcroft\\CloudIP\\CloudIPServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.20",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
