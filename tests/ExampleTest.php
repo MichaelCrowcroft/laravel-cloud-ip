@@ -1,5 +1,8 @@
 <?php
 
+use MichaelCrowcroft\CloudIP\Models\CloudIP;
+
 it('can test', function () {
-    expect(true)->toBeTrue();
+    $post = CloudIP::factory()->create(['title' => 'Fake Title']);
+    $this->assertEquals('Fake Title', $post->title);
 });
