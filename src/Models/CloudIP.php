@@ -12,10 +12,10 @@ class CloudIP extends Model
 
     protected $table = 'cloud_ips';
 
+    protected $guarded = [];
+
     protected static function newFactory()
     {
         return CloudIPFactory::new();
     }
-
-    protected $guarded = [];
 }

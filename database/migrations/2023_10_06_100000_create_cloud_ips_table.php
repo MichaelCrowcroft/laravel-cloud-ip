@@ -17,6 +17,9 @@ class CreateCloudIPsTable extends Migration
             $table->id();
 
             $table->string('ip_prefix');
+            $table->string('first_ip');
+            $table->string('last_ip');
+            $table->string('type');
             $table->string('region')->nullable();
             $table->string('service')->nullable();
 

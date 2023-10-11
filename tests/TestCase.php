@@ -2,7 +2,6 @@
 
 namespace MichaelCrowcroft\CloudIP\Tests;
 
-use CreateCloudIPsTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use MichaelCrowcroft\CloudIP\CloudIPServiceProvider;
@@ -29,7 +28,6 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        // import the CreatePostsTable class from the migration
         include_once __DIR__ . '/../database/migrations/2023_10_06_100000_create_cloud_ips_table.php';
 
         // run the up() method of that migration class

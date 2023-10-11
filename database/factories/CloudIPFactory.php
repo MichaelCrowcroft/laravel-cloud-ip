@@ -15,7 +15,7 @@ class CloudIPFactory extends Factory
             'ip_prefix' => fake()->ipv4() . "/" . fake()->numberBetween(1, 32), //move this to a method where we can define ipv4 or ipv6
             // 'ip_prefix' => fake()->ipv6() . "/" . fake()->numberBetween(1, 128),
             'region' => fake()->countryCode(),
-            'service' => fake()->company(),
-        ];
+            'service' => 'AMAZON',
+
     }
 }
