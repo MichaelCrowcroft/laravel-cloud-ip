@@ -32,7 +32,6 @@
         "laravel/framework": "^10.0",
         "symfony/http-foundation": "^6.0.0",
         "guzzlehttp/guzzle": "^7.2",
-        "calebporzio/sushi": "^2.4",
         "s1lentium/iptools": "^1.2"
     },
     "require-dev": {
