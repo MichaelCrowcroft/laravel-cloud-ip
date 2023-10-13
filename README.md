@@ -29,7 +29,7 @@ php artisan migrate
 Now that you have migrated the `cloud_ip` table you can use the provided artisan command to populate the table with cloud provider's published IP ranges.
 
 ``` bash
-php cloudip:get
+php artisan cloudip:get
 ```
 
 ## Usage
