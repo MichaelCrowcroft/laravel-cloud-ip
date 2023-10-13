@@ -1,6 +1,6 @@
 # ☁️ Track Cloud Provider IPs
 
-Store information about the IP addresses in use by cloud providers and determine if IP addresses are associated with cloud providers.
+Track the IP ranges in use by cloud providers and determine if IP addresses are associated with them. Compatable with both IPv4 and IPv6.
 
 **Cloud providers currently supported:**
 * Amazon Web Services
