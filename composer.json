@@ -1,7 +1,6 @@
 {
     "name": "michaelcrowcroft/laravel-cloud-ip",
-    "version": "1.0.0",
-    "description": "Check if IP addresses are associated with cloud vendors and services.",
+    "description": "Track the IP ranges in use by cloud providers and determine if IP addresses are associated with them. Compatable with both IPv4 and IPv6.",
     "type": "library",
     "license": "MIT",
     "authors": [
