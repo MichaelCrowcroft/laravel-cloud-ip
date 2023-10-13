@@ -36,18 +36,18 @@ php artisan cloudip:get
 
 Once the package is installed you can access information about the IP addresses cloud providers are using through `CloudIP` model. A list of th fields associated are below. This can be used like any other eloquent model.
 
-A dynamic query scope is provided to select records associated with an IP. This accepts an IP address as a long, hex, or in dot notation (as a string).
+A method is provided to select a record associated with an IP. We only select the first record, because one IP might be in multiple ranges that cloud providers use for difference services. Ultimately they will all come back to the same cloud provider though. This accepts an IP address as a long, hex, or in dot notation (as a string).
 
 ``` php
 public function cloudIP()
 {
-    public function scopeHasIP(Builder $query, $ip): void
+    public static function HasIP($ip): self|null
     {
         $ip = IP::parse($ip);
 
-        $query->where('first_ip', '<=', $ip->toLong())
+        return CloudIP::where('first_ip', '<=', $ip->toLong())
             ->where('last_ip', '>=', $ip->toLong())
-            ->sole();
+            ->first();
     }
 }
 ```

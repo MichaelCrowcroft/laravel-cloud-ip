@@ -2,6 +2,7 @@
 
 namespace MichaelCrowcroft\CloudIP\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,13 +17,13 @@ class CloudIP extends Model
 
     protected $table = 'cloud_ips';
 
-    public function scopeHasIP(Builder $query, $ip): void
+    public static function HasIP($ip): self|null
     {
         $ip = IP::parse($ip);
 
-        $query->where('first_ip', '<=', $ip->toLong())
+        return CloudIP::where('first_ip', '<=', $ip->toLong())
             ->where('last_ip', '>=', $ip->toLong())
-            ->sole();
+            ->first();
     }
 
     protected $guarded = [];
