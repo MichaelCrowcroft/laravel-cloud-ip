@@ -16,6 +16,8 @@ class GetCloudIPPrefixes extends Command
 
     public function handle()
     {
+        CloudIP::truncate();
+
         $ip_prefixes = [];
         $aws = Http::get('https://ip-ranges.amazonaws.com/ip-ranges.json')->json();
         $gcp = Http::get('https://www.gstatic.com/ipranges/cloud.json')->json();
@@ -28,6 +30,7 @@ class GetCloudIPPrefixes extends Command
             $ip_prefixes[] = [
                 'service' => $ip['service'],
                 'type' => 'ipv6',
+                'provider' => 'AWS',
                 'ip_prefix' => $ip['ipv6_prefix'],
                 'first_ip' => $first_ip,
                 'last_ip' => $last_ip,
@@ -41,6 +44,7 @@ class GetCloudIPPrefixes extends Command
             $ip_prefixes[] = [
                 'service' => $ip['service'],
                 'type' => 'ipv4',
+                'provider' => 'AWS',
                 'ip_prefix' => $ip['ip_prefix'],
                 'first_ip' => $first_ip,
                 'last_ip' => $last_ip,
@@ -56,6 +60,7 @@ class GetCloudIPPrefixes extends Command
             $ip_prefixes[] = [
                 'service' => $ip['service'],
                 'type' => isset($ip['ipv4Prefix']) ? 'ipv4' : 'ipv6',
+                'provider' => 'GCP',
                 'ip_prefix' => $ip_prefix,
                 'first_ip' => $first_ip,
                 'last_ip' => $last_ip,
@@ -63,7 +68,11 @@ class GetCloudIPPrefixes extends Command
             ];
         }
         collect($ip_prefixes)->chunk(1000)->each(function (Collection $ips) {
-            CloudIP::insert($ips->toArray());
+            CloudIP::upsert(
+                $ips->toArray(),
+                ['ip_prefix'],
+                ['service']
+            );
         });
 
         return true;
